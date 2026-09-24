@@ -254,3 +254,17 @@ export type SMURF_QUERY_RESULT = {
     lqip: string | null;
   } | null;
 } | null;
+
+// Source: ../web/app/queries/villageStats.ts
+// Variable: VILLAGE_STATS_QUERY
+// Query: {  "residents": count(*[_type == "smurf"]),  "portraits": count(*[_type == "smurf" && defined(image.asset)]),  "newest": *[_type == "smurf" && defined(slug.current)] | order(_createdAt desc)[0] {    name,    slug,    _createdAt  },  "lastUpdated": *[_type == "smurf"] | order(_updatedAt desc)[0]._updatedAt}
+export type VILLAGE_STATS_QUERY_RESULT = {
+  residents: number;
+  portraits: number;
+  newest: {
+    name: string | null;
+    slug: Slug | null;
+    _createdAt: string;
+  } | null;
+  lastUpdated: string | null;
+};

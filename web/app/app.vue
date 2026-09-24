@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { VILLAGE_STATS_QUERY } from '~/queries/villageStats'
+import type { VillageStats } from '~/types/villageStats'
+
+const { data: stats } = await useSanityQuery<VillageStats>(VILLAGE_STATS_QUERY)
+
 useHead({
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' }
@@ -38,14 +43,11 @@ useHead({
       <NuxtPage />
     </UMain>
 
-    <PreviewBanner />
+    <!-- Depends on client-only Presentation-tool detection; avoid hydration mismatches. -->
+    <ClientOnly>
+      <PreviewBanner />
+    </ClientOnly>
 
-    <UFooter>
-      <template #left>
-        <p class="text-sm text-muted">
-          Content from Sanity • © {{ new Date().getFullYear() }}
-        </p>
-      </template>
-    </UFooter>
+    <SiteFooter :stats="stats" />
   </UApp>
 </template>
