@@ -30,3 +30,10 @@
 
 # TypeGen
 schema.json
+
+# Local env
+.env
+!.env.example
+
+# Studio build output
+dist

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { stegaClean } from '@sanity/client/stega'
 import { SMURF_QUERY } from '~/queries/smurfs'
 import type { Smurf } from '~/types/smurf'
 
@@ -11,9 +12,10 @@ if (!smurf.value) {
   throw createError({ statusCode: 404, statusMessage: 'Smurf not found', fatal: true })
 }
 
+// Never let stega characters into <head>.
 useSeoMeta({
-  title: () => smurf.value?.name ?? 'Smurf',
-  description: () => smurf.value?.personality ?? ''
+  title: () => stegaClean(smurf.value?.name) ?? 'Smurf',
+  description: () => stegaClean(smurf.value?.personality) ?? ''
 })
 </script>
 

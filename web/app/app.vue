@@ -38,6 +38,8 @@ useHead({
       <NuxtPage />
     </UMain>
 
+    <PreviewBanner />
+
     <UFooter>
       <template #left>
         <p class="text-sm text-muted">

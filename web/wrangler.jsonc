@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "s3n-web",
+  "compatibility_date": "2026-09-24",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  // Public runtime config overrides (safe to commit). Secrets go via `wrangler secret put`:
+  //   wrangler secret put NUXT_SANITY_VISUAL_EDITING_TOKEN
+  "vars": {
+    "NUXT_PUBLIC_SANITY_VISUAL_EDITING_STUDIO_URL": "https://s3n.sanity.studio"
+  }
+}

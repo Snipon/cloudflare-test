@@ -1,14 +1,18 @@
 <script setup lang="ts">
+import { stegaClean } from '@sanity/client/stega'
 import type { SmurfListItem } from '~/types/smurf'
 
-defineProps<{
+const props = defineProps<{
   smurf: SmurfListItem
 }>()
+
+// Stega-encoded strings must not end up in hrefs.
+const href = computed(() => `/smurfs/${stegaClean(props.smurf.slug?.current ?? '')}`)
 </script>
 
 <template>
   <NuxtLink
-    :to="`/smurfs/${smurf.slug?.current}`"
+    :to="href"
     class="group flex flex-col gap-4 rounded-3xl border border-default bg-default p-4 transition hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-primary"
   >
     <SmurfPortrait

@@ -1,4 +1,4 @@
-import imageUrlBuilder from '@sanity/image-url'
+import { createImageUrlBuilder } from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url'
 
 /**
@@ -7,6 +7,6 @@ import type { SanityImageSource } from '@sanity/image-url'
  */
 export function useSanityImageUrl() {
   const { client } = useSanity()
-  const builder = imageUrlBuilder(client)
+  const builder = createImageUrlBuilder(client)
   return (source: SanityImageSource) => builder.image(source).auto('format')
 }
