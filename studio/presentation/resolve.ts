@@ -2,6 +2,12 @@ import {defineLocations, type PresentationPluginOptions} from 'sanity/presentati
 
 export const resolve: PresentationPluginOptions['resolve'] = {
   locations: {
+    siteSettings: defineLocations({
+      select: {title: 'title'},
+      resolve: (doc) => ({
+        locations: [{title: doc?.title || 'Home', href: '/'}],
+      }),
+    }),
     smurf: defineLocations({
       select: {name: 'name', slug: 'slug.current'},
       resolve: (doc) => ({

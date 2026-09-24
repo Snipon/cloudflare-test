@@ -1,31 +1,38 @@
 <script setup lang="ts">
+import { stegaClean } from '@sanity/client/stega'
 import { SMURFS_QUERY } from '~/queries/smurfs'
+import { SITE_SETTINGS_QUERY } from '~/queries/siteSettings'
 import type { SmurfListItem } from '~/types/smurf'
+import type { SiteSettings } from '~/types/siteSettings'
 
-const { data: smurfs } = await useSanityQuery<SmurfListItem[]>(SMURFS_QUERY)
+const [{ data: settings }, { data: smurfs }] = await Promise.all([
+  useSanityQuery<SiteSettings | null>(SITE_SETTINGS_QUERY),
+  useSanityQuery<SmurfListItem[]>(SMURFS_QUERY)
+])
 
+const title = computed(() => settings.value?.title || 'Smurf Village')
 const count = computed(() => smurfs.value?.length ?? 0)
 
 useSeoMeta({
-  title: 'Smurf Village',
-  description: 'Meet every smurf in the village.'
+  title: () => stegaClean(title.value),
+  description: () => stegaClean(settings.value?.tagline) ?? 'Meet every smurf in the village.'
 })
 </script>
 
 <template>
-  <UContainer class="py-12 sm:py-16">
-    <header class="mb-10 max-w-2xl">
-      <p class="mb-2 text-sm font-medium uppercase tracking-wide text-primary">
-        {{ count }} {{ count === 1 ? 'resident' : 'residents' }}
-      </p>
-      <h1 class="text-4xl font-bold tracking-tight text-highlighted sm:text-5xl">
-        Smurf Village
-      </h1>
-      <p class="mt-3 text-lg text-muted">
-        Every smurf in the village, from Papa to the Smurflings. Pick one to read more.
-      </p>
-    </header>
+  <UContainer class="py-6 sm:py-8">
+    <SiteHero
+      :title="title"
+      :tagline="settings?.tagline"
+      :image="settings?.heroImage"
+      :count="count"
+    />
 
-    <SmurfGrid :smurfs="smurfs ?? []" />
+    <section class="mt-10 sm:mt-14">
+      <h2 class="mb-6 text-2xl font-semibold tracking-tight text-highlighted">
+        Residents
+      </h2>
+      <SmurfGrid :smurfs="smurfs ?? []" />
+    </section>
   </UContainer>
 </template>

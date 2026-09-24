@@ -63,6 +63,24 @@ export type Slug = {
   source?: string;
 };
 
+export type SiteSettings = {
+  _id: string;
+  _type: "siteSettings";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  tagline?: string;
+  heroImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+};
+
 export type SanityImagePaletteSwatch = {
   _type: "sanity.imagePaletteSwatch";
   background?: string;
@@ -166,6 +184,7 @@ export type AllSanitySchemaTypes =
   | SanityImageCrop
   | SanityImageHotspot
   | Slug
+  | SiteSettings
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
@@ -174,6 +193,33 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageAsset
   | Geopoint;
+
+// Source: ../web/app/queries/siteSettings.ts
+// Variable: SITE_SETTINGS_QUERY
+// Query: *[_id == "siteSettings"][0] {  title,  tagline,  heroImage {    asset,    hotspot,    crop,    alt,    "lqip": asset->metadata.lqip  }}
+export type SITE_SETTINGS_QUERY_RESULT =
+  | {
+      title: null;
+      tagline: null;
+      heroImage: null;
+    }
+  | {
+      title: string | null;
+      tagline: null;
+      heroImage: null;
+    }
+  | {
+      title: string | null;
+      tagline: string | null;
+      heroImage: {
+        asset: SanityImageAssetReference | null;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        alt: string | null;
+        lqip: string | null;
+      } | null;
+    }
+  | null;
 
 // Source: ../web/app/queries/smurfs.ts
 // Variable: SMURFS_QUERY

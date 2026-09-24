@@ -4,6 +4,7 @@ import {presentationTool} from 'sanity/presentation'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import {resolve} from './presentation/resolve'
+import {structure} from './structure'
 
 export default defineConfig({
   name: 'default',
@@ -13,7 +14,7 @@ export default defineConfig({
   dataset: 'production',
 
   plugins: [
-    structureTool(),
+    structureTool({structure}),
     presentationTool({
       resolve,
       previewUrl: {
