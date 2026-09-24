@@ -21,7 +21,7 @@ defineProps<{
 
   <div
     v-else
-    class="rounded-3xl border border-dashed border-default p-12 text-center text-muted"
+    class="rounded-3xl border border-dashed border-line p-12 text-center text-muted"
   >
     No smurfs yet. Add some in the Studio.
   </div>

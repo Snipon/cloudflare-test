@@ -19,38 +19,34 @@ useHead({
 </script>
 
 <template>
-  <UApp>
-    <UHeader>
-      <template #left>
+  <div class="flex min-h-screen flex-col">
+    <header class="sticky top-0 z-40 border-b border-line bg-canvas/80 backdrop-blur">
+      <AppContainer class="flex h-16 items-center">
         <NuxtLink
           to="/"
-          class="flex items-center gap-2 rounded-md p-1 -ms-1 font-semibold text-highlighted focus-visible:outline-2 focus-visible:outline-primary"
+          class="-ms-1 flex items-center gap-2 rounded-md p-1 font-semibold text-highlighted focus-visible:outline-2 focus-visible:outline-primary"
         >
-          <UIcon
-            name="i-lucide-sparkles"
+          <AppIcon
+            name="sparkles"
             class="size-5 text-primary"
           />
           Smurf Village
         </NuxtLink>
-      </template>
+      </AppContainer>
+    </header>
 
-      <template #right>
-        <UColorModeButton />
-      </template>
-    </UHeader>
-
-    <UMain>
+    <main class="flex-1">
       <NuxtPage />
-    </UMain>
-
-    <!-- Depends on client-only Presentation-tool detection; avoid hydration mismatches. -->
-    <ClientOnly>
-      <PreviewBanner />
-    </ClientOnly>
+    </main>
 
     <LazySiteFooter
       hydrate-on-visible
       :stats="stats"
     />
-  </UApp>
+
+    <!-- Depends on client-only Presentation-tool detection; avoid hydration mismatches. -->
+    <ClientOnly>
+      <PreviewBanner />
+    </ClientOnly>
+  </div>
 </template>

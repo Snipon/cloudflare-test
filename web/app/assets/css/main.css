@@ -1,6 +1,50 @@
 @import "tailwindcss";
-@import "@nuxt/ui";
 
-@theme static {
-  --font-sans: 'Public Sans', sans-serif;
+/*
+ * Semantic tokens. Light values on :root, dark values follow the OS preference.
+ * Exposed to Tailwind as colours via `@theme inline` so classes like
+ * `bg-canvas`, `text-muted` or `border-line/40` work everywhere.
+ */
+:root {
+  --ui-bg: #ffffff;
+  --ui-bg-elevated: var(--color-slate-100);
+  --ui-text: var(--color-slate-700);
+  --ui-text-muted: var(--color-slate-500);
+  --ui-text-highlighted: var(--color-slate-900);
+  --ui-border: var(--color-slate-200);
+  --ui-primary: var(--color-sky-600);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ui-bg: var(--color-slate-950);
+    --ui-bg-elevated: var(--color-slate-900);
+    --ui-text: var(--color-slate-300);
+    --ui-text-muted: var(--color-slate-400);
+    --ui-text-highlighted: #ffffff;
+    --ui-border: var(--color-slate-800);
+    --ui-primary: var(--color-sky-400);
+  }
+}
+
+@theme inline {
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+
+  --color-canvas: var(--ui-bg);
+  --color-elevated: var(--ui-bg-elevated);
+  --color-body: var(--ui-text);
+  --color-muted: var(--ui-text-muted);
+  --color-highlighted: var(--ui-text-highlighted);
+  --color-line: var(--ui-border);
+  --color-primary: var(--ui-primary);
+}
+
+@layer base {
+  html {
+    color-scheme: light dark;
+  }
+
+  body {
+    @apply bg-canvas text-body antialiased;
+  }
 }

@@ -53,8 +53,8 @@ const alt = computed(() => props.image?.alt || props.name)
       class="flex size-full items-center justify-center text-muted"
       aria-hidden="true"
     >
-      <UIcon
-        name="i-lucide-image-off"
+      <AppIcon
+        name="image-off"
         class="size-10"
       />
     </div>

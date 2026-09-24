@@ -1,6 +1,8 @@
+import tailwindcss from '@tailwindcss/vite'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxtjs/sanity'],
+  modules: ['@nuxt/eslint', '@nuxtjs/sanity'],
 
   devtools: {
     enabled: true
@@ -33,6 +35,10 @@ export default defineNuxtConfig({
       deployConfig: true,
       nodeCompat: true
     }
+  },
+
+  vite: {
+    plugins: [tailwindcss()]
   },
 
   hooks: {

@@ -13,7 +13,7 @@ const href = computed(() => `/smurfs/${stegaClean(props.smurf.slug?.current ?? '
 <template>
   <NuxtLink
     :to="href"
-    class="group flex flex-col gap-4 rounded-3xl border border-default bg-default p-4 transition hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-primary"
+    class="group flex flex-col gap-4 rounded-3xl border border-line bg-canvas p-4 transition hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-primary"
   >
     <SmurfPortrait
       :image="smurf.image"

@@ -20,18 +20,20 @@ useSeoMeta({
 </script>
 
 <template>
-  <UContainer
+  <AppContainer
     v-if="smurf"
     class="py-12 sm:py-16"
   >
-    <UButton
+    <NuxtLink
       to="/"
-      icon="i-lucide-arrow-left"
-      label="All smurfs"
-      color="neutral"
-      variant="ghost"
-      class="mb-8"
-    />
+      class="mb-8 inline-flex items-center gap-1.5 rounded-md px-2 py-1.5 text-sm font-medium text-muted hover:bg-elevated hover:text-highlighted"
+    >
+      <AppIcon
+        name="arrow-left"
+        class="size-4"
+      />
+      All smurfs
+    </NuxtLink>
 
     <article class="grid gap-10 md:grid-cols-[minmax(0,420px)_1fr] md:items-start">
       <SmurfPortrait
@@ -51,5 +53,5 @@ useSeoMeta({
         </p>
       </div>
     </article>
-  </UContainer>
+  </AppContainer>
 </template>

@@ -20,7 +20,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <UContainer class="py-6 sm:py-8">
+  <AppContainer class="py-6 sm:py-8">
     <SiteHero
       :title="title"
       :tagline="settings?.tagline"
@@ -37,5 +37,5 @@ useSeoMeta({
         :smurfs="smurfs ?? []"
       />
     </section>
-  </UContainer>
+  </AppContainer>
 </template>
