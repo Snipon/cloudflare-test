@@ -9,8 +9,8 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "typecheck": "nuxt typecheck",
-    "deploy": "nuxt build && wrangler deploy",
-    "preview:cf": "nuxt build && wrangler dev"
+    "cf:deploy": "nuxt build && wrangler deploy",
+    "cf:preview": "nuxt build && wrangler dev"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.134",
