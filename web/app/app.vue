@@ -48,6 +48,9 @@ useHead({
       <PreviewBanner />
     </ClientOnly>
 
-    <SiteFooter :stats="stats" />
+    <LazySiteFooter
+      hydrate-on-visible
+      :stats="stats"
+    />
   </UApp>
 </template>

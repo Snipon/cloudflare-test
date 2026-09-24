@@ -32,7 +32,10 @@ useSeoMeta({
       <h2 class="mb-6 text-2xl font-semibold tracking-tight text-highlighted">
         Residents
       </h2>
-      <SmurfGrid :smurfs="smurfs ?? []" />
+      <LazySmurfGrid
+        hydrate-on-visible
+        :smurfs="smurfs ?? []"
+      />
     </section>
   </UContainer>
 </template>

@@ -38,6 +38,8 @@ useSeoMeta({
         :image="smurf.image"
         :name="smurf.name ?? ''"
         :size="840"
+        sizes="(min-width: 768px) 420px, calc(100vw - 2rem)"
+        priority
       />
 
       <div>
